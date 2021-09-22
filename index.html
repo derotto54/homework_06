@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Weather you like it or not</title>
+</head>
+<body>
+    <div class="columns">
+        <div class="box level is-narrow m-5"  style="width: 200px; height: 200px;background: #0039a6">
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <div >
+                <p class="title" style="color: white">Local Temp</p>
+                <p class="title" id="localTemp" style="color: white"></p>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="column">
+          <div class="box is-narrow m-4" style="height: 200px;">
+            <p class="title is-1 has-text-centered has-text-weight-bold" style="color: #0039a6">Weather Dashboard</p>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <div class="box box m-3" style="height: 550px">
+            <p class="title is-3 has-text-centered has-text-weight-bold" style="color: #0039a6">Cities</p>
+            <div class="field has-addons">
+                <div class="control">
+                  <input class="input" id="destination" type="text" placeholder="Destination State">
+                </div>
+                <div class="control" >            
+                </select>
+                </div>
+                <div class="control">
+                  <a id="destSearch"class="button is-info" >Search</a>
+                </div>
+              </div>
+            <!-- <p class="title is-4 has-text-centered has-text-weight-bold" style="color: #0039a6">Sub Text</p> -->
+            <div class="content">
+                <ol class="title is-4 has-text-weight-bold" style="color: #0039a6"type="1">
+                  <li id="firstDest"></li>
+                  <li id="secondDest"></li>
+                  <li id="thirdDest"></li>
+                </ol>
+            </div>
+          </div>
+        </div>
+          <div class="column">
+            <div class="box box m-3" style="height: 550px">
+              <p class="title is-3 has-text-centered has-text-weight-bold" style="color: #0039a6">5 Day Forecast</p>
+    
+              <ul id="covid_cnt"></ul>
+              <!-- <p class="title is-4 has-text-centered has-text-weight-bold" style="color: #0039a6">Sub Text</p> -->
+            </div>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="box m-3" style="height: 550px">
+              <p class="title is-3 has-text-centered has-text-weight-bold" id="myDestinationsWeather" style="color: #0039a6"><span>Weather</span> </p>
+            </div>
+        </div>
+      </div>
+    <script src="assets/script.js"></script>    
+</body>
+</html>
