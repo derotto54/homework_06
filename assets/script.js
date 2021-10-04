@@ -78,7 +78,6 @@ function destinationWeather() {
                     document.querySelector('#myDestinationsWeather').appendChild(elem)
                 }
                 var i = document.createElement('i')
-                //i.id = "condImg"
                 i.style.fontSize = "80px"
                 i.classList.add("destConditions","fas", otherCondArray[otherCondArray.indexOf(myDestCond) + 1])
                 document.querySelector('#myDestinationsWeather').appendChild(i)
@@ -90,7 +89,7 @@ function destinationWeather() {
                 return response.json();
             })
             
-            //Return local temp and add it to the DOM
+            //Return destination forecast temp and add to DOM
             .then(function (dataFore){
                 console.log(dataFore)
                 oneTemp = dataFore.list[0].main.temp.toFixed(0)
@@ -107,23 +106,13 @@ function destinationWeather() {
                     document.querySelector('#myDestinationsWeatherFore').appendChild(elem)
                 }
                 var i = document.createElement('i')
-                //i.id = "condImg"
                 i.style.fontSize = "80px"
-                //i.classList.add("fas", otherCondArray[otherCondArray.indexOf(myDestCond) + 1])
                 document.querySelector('#myDestinationsWeather').appendChild(i)
             })
 
             }
     }            
 
-// function getMyForecast() {
-//     function success(position) {
-//         const latitude  = position.coords.latitude
-//         const longitude = position.coords.longitude
-
-        
-//         }
-// }
 
 //Store recent destination searches to local storage
 function recentDestinations() {
@@ -170,7 +159,6 @@ function showRecentDestination() {
 
 //Event listener for searching destination
 search.addEventListener('click', destinationWeather)
-// search.addEventListener('click', getMyForecast)
 search.addEventListener('click', recentDestinations);
 textarea.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
