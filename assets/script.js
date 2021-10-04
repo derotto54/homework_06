@@ -83,8 +83,47 @@ function destinationWeather() {
                 i.classList.add("destConditions","fas", otherCondArray[otherCondArray.indexOf(myDestCond) + 1])
                 document.querySelector('#myDestinationsWeather').appendChild(i)
             })
+            let openWeatherForecastCall = 'https://api.openweathermap.org/data/2.5/forecast?q=' + result + '&units=imperial' + '&appid=ef63013691934073952193cd8112b3f3'
+
+        fetch(openWeatherForecastCall) 
+            .then(function (response) {
+                return response.json();
+            })
+            
+            //Return local temp and add it to the DOM
+            .then(function (dataFore){
+                console.log(dataFore)
+                oneTemp = dataFore.list[0].main.temp.toFixed(0)
+                twoTemp = dataFore.list[1].main.temp.toFixed(0)
+                threeTemp = dataFore.list[2].main.temp.toFixed(0)
+                fourTemp = dataFore.list[3].main.temp.toFixed(0)
+                fiveTemp = dataFore.list[4].main.temp.toFixed(0)
+                const destArray = [{classes: ["title", "is-5", "has-text-weight-bold", "m-5", "destFore"], inText: 'Day 1'}, {inText: oneTemp + "\xB0F"}, {inText: 'Day 2'}, {inText: twoTemp + "\xB0F"}, {inText: 'Day 3'}, {inText: threeTemp + "\xB0F"}, {inText: 'Day 4'}, {inText: fourTemp + "\xB0F"}, {inText: 'Day 5'}, {inText: fiveTemp + "\xB0F"}]  
+                document.querySelectorAll('.destFore').forEach(e => e.remove());
+                for (var i = 0; i < destArray.length; i++) {
+                    var elem = document.createElement('p')
+                    elem.classList.add(...destArray[0].classes)
+                    elem.innerText = destArray[i].inText
+                    document.querySelector('#myDestinationsWeatherFore').appendChild(elem)
+                }
+                var i = document.createElement('i')
+                //i.id = "condImg"
+                i.style.fontSize = "80px"
+                //i.classList.add("fas", otherCondArray[otherCondArray.indexOf(myDestCond) + 1])
+                document.querySelector('#myDestinationsWeather').appendChild(i)
+            })
+
+            }
     }            
-}
+
+// function getMyForecast() {
+//     function success(position) {
+//         const latitude  = position.coords.latitude
+//         const longitude = position.coords.longitude
+
+        
+//         }
+// }
 
 //Store recent destination searches to local storage
 function recentDestinations() {
@@ -92,6 +131,8 @@ function recentDestinations() {
     if (result == '') {
         return
     } else {
+    localStorage.setItem('fifthDest', localStorage.getItem('forthDest'))
+    localStorage.setItem('forthDest', localStorage.getItem('thirdDest'))
     localStorage.setItem('thirdDest', localStorage.getItem('secondDest'))
     localStorage.setItem('secondDest',localStorage.getItem('firstDest'))
     localStorage.setItem('firstDest', result)
@@ -107,6 +148,15 @@ function showRecentDestination() {
             localStorage.setItem('secondDest', " ")
             if (localStorage.getItem('thirdDest') == null) {
                 localStorage.setItem('thirdDest', " ")
+                if (localStorage.getItem('forthDest') == null) {
+                    localStorage.setItem('forthDest', " ")
+                    if (localStorage.getItem('fifthDest') == null) {
+                        localStorage.setItem('fifthDest', " ")
+
+
+                
+                    }
+                }
             }
         }
         showRecentDestination()
@@ -114,10 +164,13 @@ function showRecentDestination() {
         document.getElementById('firstDest').innerText = localStorage.getItem('firstDest')
         document.getElementById('secondDest').innerText = localStorage.getItem('secondDest')
         document.getElementById('thirdDest').innerText = localStorage.getItem('thirdDest')
+        document.getElementById('forthDest').innerText = localStorage.getItem('forthDest')
+        document.getElementById('fifthDest').innerText = localStorage.getItem('fifthDest')
 }
 
 //Event listener for searching destination
 search.addEventListener('click', destinationWeather)
+// search.addEventListener('click', getMyForecast)
 search.addEventListener('click', recentDestinations);
 textarea.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
